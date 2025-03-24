@@ -13,7 +13,7 @@
 VSCode上に配置したシステム設計書が記載されているExcelファイルをPowerShellスクリプトとGithub Copilotを併用してMarkdownファイルに変換する拡張機能です。  
 対象のExcelファイルを右クリック ＞ Markdownに変換 で変換することができます。
 
-![excel-reader](./usage.gif)
+![excel-reader](./doc_images/usage.gif)
 
 
 ## Requirements
@@ -23,12 +23,12 @@ VSCode上に配置したシステム設計書が記載されているExcelファ
 1. Github Copilotのインストール  
    VSCodeの「拡張機能」タブから[https://marketplace.visualstudio.com/items?itemName=GitHub.copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)をインストールしてください。
 2. 拡張機能のインストール  
-   Releaseタブからvsixファイルをダウンロードしてください。  
+   [Releases](https://github.com/nagaoka-aya/excel-reader/releases)からvsixファイルをダウンロードしてください。  
    VSCode の「拡張機能」タブから右上のアイコンをクリックし、「VSIXからのインストール...」をクリックして、ダウンロードしたvsixファイルを選択します。
 3. Scriptファイルの配置  
    [ExcelDataExtract.ps1](./scripts/ExcelDataExtract.ps1)を任意のフォルダにダウンロードしてください。
    Excel To Markdownの設定画面を開きscriptPathにps1ファイルへの絶対パスを設定してください。  
-   ![setting](./settings.jpg)
+   ![setting](./doc_images/settings.jpg)
 4. VSCodeのデフォルトのターミナルをPowerShellに変更  
    [VSCodeのデフォルトターミナルを変更する方法](https://zenn.dev/unsoluble_sugar/articles/362a17a7f57020) を参考にVSCodeのデフォルトのターミナルをPowerShellに変更してください。
 
@@ -48,6 +48,6 @@ VSCode上に配置したシステム設計書が記載されているExcelファ
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.1
 
 Initial release
