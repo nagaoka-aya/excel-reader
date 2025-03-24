@@ -1,71 +1,52 @@
 # excel-reader README
 
-This is the README for your extension "excel-reader". After writing up a brief description, we recommend including the following sections.
+システム設計書が記載されているExcelをMarkdownに変換するVSCodeの拡張機能です。
+
+以下のような方向けに作成しました
+
+* Doclingをインストールするのすらめんどくさい
+* VSCode上で全てを完結したい
+* 社内のネットワーク制限などによりGithub Copilotしか使用できない
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+VSCode上に配置したシステム設計書が記載されているExcelファイルをPowerShellスクリプトとGithub Copilotを併用してMarkdownファイルに変換する拡張機能です。
 
-For example if there is an image subfolder under your extension project workspace:
+![excel-reader](./usage.gif)
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+拡張機能を使用するには以下の準備が必要です。
+
+1. Github Copilotのインストール  
+   VSCodeの「拡張機能」タブから[https://marketplace.visualstudio.com/items?itemName=GitHub.copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)をインストールしてください。
+2. 拡張機能のインストール  
+   Releaseタブからvsixファイルをダウンロードしてください。  
+   VSCode の「拡張機能」タブから右上のアイコンをクリックし、「VSIXからのインストール...」をクリックして、ダウンロードしたvsixファイルを選択します。
+3. Scriptファイルの配置  
+   [ExcelDataExtract.ps1](./scripts/ExcelDataExtract.ps1)を任意のフォルダにダウンロードしてください。
+   Excel To Markdownの設定画面を開きscriptPathにps1ファイルへの絶対パスを設定してください。  
+   ![setting](./settings.jpg)
+4. VSCodeのデフォルトのターミナルをPowerShellに変更  
+   [VSCodeのデフォルトターミナルを変更する方法](https://zenn.dev/unsoluble_sugar/articles/362a17a7f57020) を参考にVSCodeのデフォルトのターミナルをPowerShellに変更してください。
+
+以上で準備は完了です！
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `excelToMarkdown.scriptPath`: Excel読み取り用のPowerShellスクリプト(.ps1)へのパス
+* `excelToMarkdown.ignoreSheets`: Excelシートのうち、Markdownへの変換をおこわ内シートの名前。デフォルト値は`["表紙","目次","変更履歴","データ"]`
+* `excelToMarkdown.outputFolder`: 変換したMarkdownファイルの保存先です。デフォルト値は`excelToMarkdown`
+* `excelToMarkdown.extendedPrompt`: Markdown変換時の拡張プロンプトです。例えばヘッダーを含むExcelを変換する場合に"ページの先頭3行目まではヘッダー情報なので、4行目以降を出力してください。"などと、変換に対して追加の要望を記載することができます。
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+* 長大なExcelファイルには対応していません。Terminalの出力制限またはGithub Copilotの入力コンテキスト長を超える長さのテキストは変換できません。
+* 数式には対応していません。
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release
