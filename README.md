@@ -10,7 +10,8 @@
 
 ## Features
 
-VSCode上に配置したシステム設計書が記載されているExcelファイルをPowerShellスクリプトとGithub Copilotを併用してMarkdownファイルに変換する拡張機能です。
+VSCode上に配置したシステム設計書が記載されているExcelファイルをPowerShellスクリプトとGithub Copilotを併用してMarkdownファイルに変換する拡張機能です。  
+対象のExcelファイルを右クリック ＞ Markdownに変換 で変換することができます。
 
 ![excel-reader](./usage.gif)
 
