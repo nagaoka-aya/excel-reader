@@ -5,6 +5,7 @@
 import * as vscode from 'vscode';
 import { converse } from './converse';
 import path from 'path';
+const fs = require('fs');
 
 /**
  * 拡張機能がアクティブ化されたときに呼び出される関数
@@ -12,6 +13,10 @@ import path from 'path';
  */
 export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.commands.registerCommand('excel-reader.excelToMarkdown', async (...commandArgs) => {
+
+		if (!validateSettings()) {
+			return;
+		}
 
 		const args = extractExcelUris(commandArgs);
 
@@ -35,6 +40,37 @@ export function activate(context: vscode.ExtensionContext) {
  * 拡張機能が非アクティブ化されたときに呼び出される関数
  */
 export function deactivate() { }
+
+/**
+ * 設定内容を精査する。
+ * @returns 問題がある場合はfalseを返す
+ */
+function validateSettings(): boolean {
+	const config = vscode.workspace.getConfiguration('excelToMarkdown');
+	const scriptPath = config.get('scriptPath') as string;
+
+	if (!scriptPath) {
+		vscode.window.showErrorMessage('excelToMarkdown.extendedPromptを設定してください');
+		return false;
+	}
+
+	if (!scriptPath.toLowerCase().endsWith('.ps1')) {
+		vscode.window.showErrorMessage('excelToMarkdown.scriptPathは.ps1ファイルを指定してください');
+		return false;
+	}
+
+	try {
+		if (!fs.existsSync(scriptPath)) {
+			vscode.window.showErrorMessage(`スクリプトファイルが見つかりません: ${scriptPath}`);
+			return false;
+		}
+	} catch (error) {
+		vscode.window.showErrorMessage(`スクリプトファイルの確認中にエラーが発生しました: ${error instanceof Error ? error.message : String(error)}`);
+		return false;
+	}
+
+	return true;
+}
 
 /**
  * Excelファイルを処理してMarkdownに変換する
