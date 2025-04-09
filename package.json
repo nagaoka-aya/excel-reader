@@ -36,6 +36,28 @@
           "description": "Excel読み取り用のPowerShellスクリプト(.ps1)へのパス",
           "order": 1
         },
+        "excelToMarkdown.modelFamily": {
+          "type": "string",
+          "enum": [
+            "gpt-4o",
+            "claude-3.5-sonnet",
+            "claude-3.7-sonnet",
+            "gemini-2.0-flash",
+            "o3-mini",
+            "gpt-4o-mini"
+          ],
+          "enumItemLabels": [
+            "Base Model",
+            "Claude 3.5 Sonnet",
+            "Claude 3.7 Sonnet",
+            "Gemini 2.0 Flash",
+            "o3 mini",
+            "GPT 4o mini"
+          ],
+          "default": "gpt-4o",
+          "description": "使用するLLMモデル",
+          "order": 2
+        },
         "excelToMarkdown.ignoreSheets": {
           "type": "array",
           "items": {
@@ -48,20 +70,20 @@
             "データ"
           ],
           "description": "無視するシート名のリスト",
-          "order": 2
+          "order": 3
         },
         "excelToMarkdown.outputFolder": {
           "type": "string",
           "default": "excelToMarkdown",
           "description": "処理結果の出力先フォルダパス",
-          "order": 3
+          "order": 4
         },
         "excelToMarkdown.extendedPrompt": {
           "type": "string",
           "default": "",
           "description": "ExcelからMarkdownに変換する際の拡張プロンプト",
           "editPresentation": "multilineText",
-          "order": 4
+          "order": 5
         }
       }
     }

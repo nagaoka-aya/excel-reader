@@ -37,9 +37,16 @@ VSCode上に配置したシステム設計書が記載されているExcelファ
 ## Extension Settings
 
 * `excelToMarkdown.scriptPath`: Excel読み取り用のPowerShellスクリプト(.ps1)へのパス
+* `excelToMarkdown.modelFamily`: 使用するLLMモデル。デフォルト値は`gpt-4o`
 * `excelToMarkdown.ignoreSheets`: Excelシートのうち、Markdownへの変換をおこわ内シートの名前。デフォルト値は`["表紙","目次","変更履歴","データ"]`
 * `excelToMarkdown.outputFolder`: 変換したMarkdownファイルの保存先です。デフォルト値は`excelToMarkdown`
 * `excelToMarkdown.extendedPrompt`: Markdown変換時の拡張プロンプトです。例えばヘッダーを含むExcelを変換する場合に"ページの先頭3行目まではヘッダー情報なので、4行目以降を出力してください。"などと、変換に対して追加の要望を記載することができます。
+
+## Recommend LLM Model 
+
+* gpt-4o: 最も料金が安いモデルです
+* gemini-2.0-flash: レスポンスが一番早いですが、変換後のMarkdownが少々読みにくいです
+* claude-3.5-sonnet: 最も読みやすいMarkdownが生成されます
 
 ## Known Issues
 
@@ -51,3 +58,7 @@ VSCode上に配置したシステム設計書が記載されているExcelファ
 ### 0.0.1
 
 Initial release
+
+### 0.0.2
+
+LLMモデルを選択できるよう改修

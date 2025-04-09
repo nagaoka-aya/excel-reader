@@ -93,10 +93,19 @@ async function processExcelFile(uri: vscode.Uri): Promise<void> {
 		const configValue = config.get('ignoreSheets') as string[];
 		const outputFolder = config.get('outputFolder') as string;
 		const extendedPrompt = config.get('extendedPrompt') as string;
+		const modelFamily = config.get('modelFamily') as string;
 		// Extract the filename from the Excel path and remove the extension
 		const excelFileName = path.basename(excelPath).split(".").slice(0, -1).join(".")
 		const outputFolderPath = outputFolder + "/" + excelFileName;
-		await converse(result.consoleLog, configValue, outputFolderPath, extendedPrompt);
+		try {
+			await converse(result.consoleLog, configValue, outputFolderPath, extendedPrompt, modelFamily);
+		} catch (e) {
+			if (e instanceof Error) {
+				vscode.window.showErrorMessage(e.message);
+			} else {
+				vscode.window.showErrorMessage("system error");
+			}
+		}
 	} else {
 		vscode.window.showErrorMessage('Failed to run the script');
 	}

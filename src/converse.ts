@@ -25,10 +25,11 @@ excelタグで与えられた情報は、システム設計書のエクセルフ
  * @param outputFolderPath 出力先フォルダパス
  * @param extendedPrompt AIへの追加指示（プロンプト拡張）
  */
-export async function converse(excelData: string, ignoreSheets: string[], outputFolderPath: string, extendedPrompt: string) {
+export async function converse(excelData: string, ignoreSheets: string[], outputFolderPath: string, extendedPrompt: string, modelFamily: string) {
+
     let [model] = await vscode.lm.selectChatModels({
         vendor: 'copilot',
-        family: 'gpt-4o'
+        family: modelFamily
     });
 
     const sheets = splitSheetData(excelData, ignoreSheets);
